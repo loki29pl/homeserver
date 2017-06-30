@@ -6,7 +6,7 @@ Vagrant.configure("2") do |config|
     config.ssh.insert_key = false
     config.ssh.forward_agent = true
 
-    config.vm.box = "home-server-%s" % $version
+    config.vm.box = "coreos-%s" % $update_channel 
     config.vm.box_url = "https://storage.googleapis.com/%s.release.core-os.net/amd64-usr/%s/coreos_production_vagrant.json" % [$update_channel, $image_version]
 
     config.vm.provider :virtualbox do |vbox|
@@ -14,6 +14,7 @@ Vagrant.configure("2") do |config|
         vbox.functional_vboxsf     = false
         vbox.cpus = 2
         vbox.memory = 1024
+        vbox.name = "home-server-%s" % $version
     end
 
     config.vm.synced_folder ".", "/home/core/containers"
@@ -26,7 +27,7 @@ Vagrant.configure("2") do |config|
     config.vm.provision :docker_compose, 
         yml: "/home/core/containers/docker-compose.yml", 
         compose_version: "1.14.0",
-        executable_install_path: "/home/core/vagrant",
+        executable_install_path: "/home/core/vagrant/docker-compose",
         executable_symlink_path: "/home/core/docker-compose",
         run: "always"
 end

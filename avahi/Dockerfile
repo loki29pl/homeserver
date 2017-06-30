@@ -8,6 +8,7 @@ RUN apt-get install -y libavahi-compat-libdnssd-dev \
         psmisc \
         avahi-daemon \
         avahi-discover \
-        libnss-mdns
+        libnss-mdns \
+        avahi-utils
 
 CMD avahi-daemon
