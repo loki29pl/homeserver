@@ -1,0 +1,38 @@
+version: "3"
+
+services: 
+  dbus:
+    build: ./dbus
+    networks:
+      srvbr:
+        ipv4_address: 10.121.0.10
+
+  avahi:
+    build: ./avahi
+    ports:
+      - 5353:5353/udp
+    network_mode: "host"
+    depends_on:
+      - dbus
+
+  homebridge:
+    build: ./Homebridge
+    ports:
+      - "51826:51826"
+    volumes:
+      - ./Homebridge:/root/.homebridge
+    restart: "always"
+    networks:
+      srvbr:
+        ipv4_address: 10.121.0.11
+    depends_on:
+      - avahi
+
+networks:
+  srvbr:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.121.0.0/16
+
+
