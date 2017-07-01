@@ -20,15 +20,6 @@ RUN apt-get install -y wget \
         psmisc \
         libnss-mdns
 
-RUN git clone --recursive https://github.com/obgm/libcoap.git
-WORKDIR /root/libcoap
-RUN git checkout dtls
-RUN git submodule update --init --recursive
-RUN ./autogen.sh
-RUN ./configure --disable-documentation --disable-shared
-RUN make
-RUN make install 
-
 WORKDIR /root
 
 RUN curl -sL https://deb.nodesource.com/setup_6.x | bash -
@@ -37,11 +28,10 @@ RUN apt-get install -y nodejs
 
 RUN npm install -g homebridge
 RUN npm install -g homebridge-milight
-RUN npm install -g homebridge-tradfri-plugin
 
 RUN mkdir /root/.homebridge
 ADD config.json /root/.homebridge/config.json
 
-EXPOSE 51826
+EXPOSE 51827
 
 CMD homebridge

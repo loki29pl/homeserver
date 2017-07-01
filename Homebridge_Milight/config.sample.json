@@ -19,16 +19,7 @@
 				"repeat": 1,
 				"delay": 100
 			}]
-		},
-		{
-			"platform": "IkeaTradfri",
-			"name": "Tradfri",
-			"host": "192.168.1.XX",
-			"key": "XXXXXXXXXXXXXXXX",
-			"debug": true,
-			"coapClientPath": "/usr/local/bin/coap-client"
 		}
-
 	]
 }
 

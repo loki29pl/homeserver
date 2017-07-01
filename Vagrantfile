@@ -1,6 +1,6 @@
 $update_channel = "alpha"
 $image_version = "current"
-$version = 2;
+$version = 3;
 
 Vagrant.configure("2") do |config|
     config.ssh.insert_key = false

@@ -11,4 +11,5 @@ Dockerized Home Server
  
  * DBUS
  * Avahi
- * Homebridge with Ikea bulbs and MiLight support
+ * Homebridge Milight
+ * Homebridge Ikea

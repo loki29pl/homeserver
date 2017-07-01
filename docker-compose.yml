@@ -15,16 +15,29 @@ services:
     depends_on:
       - dbus
 
-  homebridge:
-    build: ./Homebridge
+  homebridge-milight:
+    build: ./Homebridge_Milight
     ports:
-      - "51826:51826"
+      - "51827:51827"
     volumes:
-      - ./Homebridge:/root/.homebridge
+      - ./Homebridge_Milight:/root/.homebridge
     restart: "always"
     networks:
       srvbr:
         ipv4_address: 10.121.0.11
+    depends_on:
+      - avahi
+
+  homebridge-ikea:
+    build: ./Homebridge_Ikea
+    ports:
+      - "51826:51826"
+    volumes:
+      - ./Homebridge_Ikea:/root/.homebridge
+    restart: "always"
+    networks:
+      srvbr:
+        ipv4_address: 10.121.0.12
     depends_on:
       - avahi
 
