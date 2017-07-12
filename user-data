@@ -1,0 +1,6 @@
+#cloud-config
+
+coreos:
+    units:
+        - name: locksmithd.service
+          command: stop

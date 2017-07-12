@@ -11,4 +11,6 @@ RUN apt-get install -y libavahi-compat-libdnssd-dev \
         libnss-mdns \
         avahi-utils
 
+EXPOSE 5353/udp
+
 CMD avahi-daemon

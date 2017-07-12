@@ -1,8 +1,16 @@
+require "fileutils";
+
 $update_channel = "alpha"
 $image_version = "current"
 $version = 3;
 
+CONFIG_FILE = File.join(File.dirname(__FILE__), "user-data")
+
 Vagrant.configure("2") do |config|
+    if Vagrant.has_plugin?("vagrant-vbguest") then
+      config.vbguest.auto_update = false
+    end
+
     config.ssh.insert_key = false
     config.ssh.forward_agent = true
 
@@ -17,11 +25,16 @@ Vagrant.configure("2") do |config|
         vbox.name = "home-server-%s" % $version
     end
 
-    config.vm.synced_folder ".", "/home/core/containers"
-
     config.vm.network "public_network", bridge: "en0: Ethernet", :mac => "000011223344"
 
+    config.vm.network :private_network, ip: "172.28.128.3"
+    # config.vm.synced_folder ".", "/home/core/containers", type: "nfs", id: "core", mount_options: ['nolock,vers=3,udp,noatime']
+    config.vm.synced_folder ".", "/home/core/containers", type: "rsync"
+
     config.vm.provision "shell", inline: "mkdir /home/core/vagrant"
+
+    config.vm.provision :file, :source => "#{CONFIG_FILE}", :destination => "/tmp/vagrantfile-user-data"
+    config.vm.provision :shell, :inline => "mv /tmp/vagrantfile-user-data /var/lib/coreos-vagrant/", :privileged => true
 
     config.vm.provision :docker
     config.vm.provision :docker_compose, 
