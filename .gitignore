@@ -1,2 +1,4 @@
 .DS_Store
 .vagrant
+/vagrant.rb
+.com.apple.timemachine.supported

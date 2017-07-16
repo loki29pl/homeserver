@@ -1,7 +1,7 @@
 FROM debian:jessie
 
 ENV KERNEL_VERSION 4.12
-ENV VBOX_VERSION 5.1.22
+ENV VBOX_VERSION 5.0.38
 
 RUN apt-get update
 RUN apt-get install -y curl git gcc make p7zip p7zip-full bzip2
@@ -12,8 +12,8 @@ RUN git clone --single-branch -b v${KERNEL_VERSION}-coreos https://github.com/co
 WORKDIR /opt/linux
 RUN apt-get install bc
 # RUN curl -L -o .config https://raw.githubusercontent.com/coreos/coreos-overlay/master/sys-kernel/coreos-kernel/files/x86_64_defconfig-${KERNEL_VERSION}
-RUN curl -L -o commonconfig https://raw.githubusercontent.com/coreos/coreos-overlay/master/sys-kernel/coreos-modules/files/commonconfig-4.12
-RUN curl -L -o amd64_defconfig https://raw.githubusercontent.com/coreos/coreos-overlay/master/sys-kernel/coreos-modules/files/arm64_defconfig-4.12
+RUN curl -L -o commonconfig https://raw.githubusercontent.com/coreos/coreos-overlay/master/sys-kernel/coreos-modules/files/commonconfig-${KERNEL_VERSION}
+RUN curl -L -o amd64_defconfig https://raw.githubusercontent.com/coreos/coreos-overlay/master/sys-kernel/coreos-modules/files/arm64_defconfig-${KERNEL_VERSION}
 RUN make oldconfig
 RUN make prepare
 RUN make scripts
