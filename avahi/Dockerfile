@@ -13,4 +13,6 @@ RUN apt-get install -y libavahi-compat-libdnssd-dev \
 
 EXPOSE 5353/udp
 
+CMD pkill -F var/run/avahi-daemon//pid
+
 CMD avahi-daemon

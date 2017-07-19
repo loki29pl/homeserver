@@ -13,4 +13,6 @@ Dockerized Home Server
  * Avahi
  * Homebridge Milight
  * Homebridge Ikea
- * Virtualbox Guest Additionl CoreOS Builder (not ready yet)
+ * Virtualbox Guest Additions CoreOS Builder (not ready yet)
+ * Mysql server
+ * Owncloud

@@ -3,7 +3,7 @@ require_relative "./vagrant.rb"
 
 $update_channel = "alpha"
 $image_version = "current"
-$version = 3;
+$version = 4;
 
 CONFIG_FILE = File.join(File.dirname(__FILE__), "user-data")
 
@@ -31,15 +31,12 @@ Vagrant.configure("2") do |config|
     config.vm.network "private_network", ip: "172.28.128.5", :mac => "080027986b1b"
 
     # Default Synced folder via rsync
-    # config.vm.synced_folder ".", "/home/core/containers", type: "rsync"
-
-    config.vm.provision "shell", inline: "mkdir /home/core/containers"
-    config.vm.provision "shell", inline: "sudo mount -t cifs -o username=#{SMB_LOGIN},password=#{SMB_PASSWORD},rw #{SMB_PATH} /home/core/containers"
+    config.vm.synced_folder ".", "/home/core/containers", type: "rsync"
 
     config.vm.provision :file, :source => "#{CONFIG_FILE}", :destination => "/tmp/vagrantfile-user-data"
     config.vm.provision :shell, :inline => "mv /tmp/vagrantfile-user-data /var/lib/coreos-vagrant/", :privileged => true
 
-    config.vm.provision "shell", inline: "mkdir /home/core/vagrant"
+    config.vm.provision "shell", inline: "mkdir -p /home/core/vagrant"
     config.vm.provision :docker
     config.vm.provision :docker_compose, 
         yml: "/home/core/containers/docker-compose.yml", 

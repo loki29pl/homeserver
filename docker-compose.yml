@@ -41,6 +41,26 @@ services:
     depends_on:
       - avahi
 
+  db:
+    # https://hub.docker.com/_/mysql/
+    image: mariadb
+    networks:
+      srvbr:
+        ipv4_address: 10.121.0.13
+
+  # owncloud:
+  #   # https://hub.docker.com/_/owncloud/
+  #   image: owncloud
+  #   ports:
+  #     - 8001:80
+  #   networks:
+  #     srvbr:
+  #       ipv4_address: 10.121.0.14
+  #   volumes:
+  #     - ./owncloud/apps:/var/www/html/apps 
+  #     - ./owncloud/config:/var/www/html/config
+  #     - ./owncloud/data:/var/www/html/data
+
 networks:
   srvbr:
     driver: bridge
