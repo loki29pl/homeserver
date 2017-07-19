@@ -1,4 +1,8 @@
-networks:
-  db:
-    environment:
-      MYSQL_ROOT_PASSWORD: password
+services:
+db:
+  environment:
+    MYSQL_ROOT_PASSWORD: password
+
+phpmyadmin:
+  environment:
+    PMA_HOST: "10.121.0.13"
