@@ -56,7 +56,7 @@ services:
     networks:
       srvbr:
         ipv4_address: 10.121.0.14
-    depends:
+    depends_on:
       - db
 
   owncloud:
@@ -67,7 +67,7 @@ services:
     networks:
       srvbr:
         ipv4_address: 10.121.0.15
-    depends:
+    depends_on:
       - db
     volumes:
       - ./owncloud/apps:/var/www/html/apps 

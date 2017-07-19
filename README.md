@@ -1,13 +1,17 @@
 Dockerized Home Server
 ======================
 
-# Installation
+# Installation in virtual machine
 
     vagrant plugin install vagrant-docker-compose
 
     vagrant up
 
- # Features
+# Installatiton 
+
+    docker-compose up
+
+# Features
  
  * DBUS
  * Avahi
@@ -15,4 +19,5 @@ Dockerized Home Server
  * Homebridge Ikea
  * Virtualbox Guest Additions CoreOS Builder (not ready yet)
  * Mysql server
+ * PHPMyAdmin
  * Owncloud
