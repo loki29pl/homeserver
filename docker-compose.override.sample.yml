@@ -1,0 +1,4 @@
+networks:
+  db:
+    environment:
+      MYSQL_ROOT_PASSWORD: password
