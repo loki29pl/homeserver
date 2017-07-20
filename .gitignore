@@ -4,3 +4,4 @@
 .com.apple.timemachine.supported
 /docker-compose.override.yml
 /owncloud
+/openldap

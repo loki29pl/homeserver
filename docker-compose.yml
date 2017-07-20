@@ -74,6 +74,29 @@ services:
       - ./owncloud/config:/var/www/html/config
       - ./owncloud/data:/var/www/html/data
 
+  openldap:
+    image: osixia/openldap:1.1.9
+    container_name: openldap
+    volumes:
+      - ./openldap/database:/var/lib/ldap
+      - ./openldap/slap.d:/etc/ldap/slapd.d
+    networks:
+     srvbr:
+       ipv4_address: 10.121.0.16
+  
+  phpldapadmin:
+    image: osixia/phpldapadmin:0.7.0
+    environment:
+      PHPLDAPADMIN_LDAP_HOSTS: '10.121.0.16'
+    ports:
+      - 8003:443
+    depends_on:
+      - openldap
+    networks:
+     srvbr:
+       ipv4_address: 10.121.0.17
+
+
 networks:
   srvbr:
     driver: bridge
