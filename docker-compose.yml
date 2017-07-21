@@ -80,6 +80,9 @@ services:
     volumes:
       - ./openldap/database:/var/lib/ldap
       - ./openldap/slap.d:/etc/ldap/slapd.d
+    ports:
+      - 389:389
+      - 636:636
     networks:
      srvbr:
        ipv4_address: 10.121.0.16
