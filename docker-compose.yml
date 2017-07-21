@@ -99,6 +99,25 @@ services:
      srvbr:
        ipv4_address: 10.121.0.17
 
+  ldap-template:
+    build: ./ldap-template
+    image: local/ldap-template
+    networks:
+     srvbr:
+      ipv4_address: 10.121.0.18
+
+  shell:
+    build: ./shell
+    container_name: "shell"
+    ports:
+      - "2222:22"
+    networks:
+      srvbr:
+        ipv4_address: 10.121.0.19
+    volumes:
+      - ./shell/home:/home
+    depends_on:
+      - ldap-template
 
 networks:
   srvbr:
