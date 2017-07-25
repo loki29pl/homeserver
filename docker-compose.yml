@@ -124,7 +124,7 @@ services:
     build: "./afp"
     container_name: "afp"
     ports:
-      - 5480:548
+      - 548:548
     volumes:
       - ./afp/afp.conf:/usr/local/etc/afp.conf
     networks:
