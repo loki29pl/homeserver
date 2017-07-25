@@ -3,12 +3,14 @@ version: "3"
 services: 
   dbus:
     build: ./dbus
+    container_name: dbus
     networks:
       srvbr:
         ipv4_address: 10.121.0.10
 
   avahi:
     build: ./avahi
+    container_name: avahi
     ports:
       - 5353:5353/udp
     network_mode: "host"
@@ -17,6 +19,7 @@ services:
 
   homebridge-milight:
     build: ./Homebridge_Milight
+    container_name: milight
     ports:
       - "51827:51827"
     volumes:
@@ -30,6 +33,7 @@ services:
 
   homebridge-ikea:
     build: ./Homebridge_Ikea
+    container_name: ikea
     ports:
       - "51826:51826"
     volumes:
@@ -44,6 +48,9 @@ services:
   db:
     # https://hub.docker.com/_/mysql/
     image: mariadb
+    container_name: mariadb
+    volumes:
+      - ./db:/var/lib/mysql
     networks:
       srvbr:
         ipv4_address: 10.121.0.13
@@ -51,6 +58,7 @@ services:
   phpmyadmin:
     # https://hub.docker.com/r/phpmyadmin/phpmyadmin/
     image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
     ports:
       - 8001:80
     networks:
@@ -62,6 +70,7 @@ services:
   owncloud:
     # https://hub.docker.com/_/owncloud/
     image: owncloud
+    container_name: owncloud
     ports:
       - 8002:80
     networks:
