@@ -6,6 +6,13 @@ RUN chmod 0755 /var/run/sshd
 
 EXPOSE 22
 
-RUN apt-get install -y vim 
+RUN apt-get install -y \
+    vim \
+    bind9utils \
+    traceroute \
+    mtr \
+    nmap \
+    wget \
+    curl
 
 CMD nslcd; /usr/sbin/sshd -D

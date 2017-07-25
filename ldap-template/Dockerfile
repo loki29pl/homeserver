@@ -1,6 +1,5 @@
 FROM debian:jessie
 
-ENV TEST=abc
 RUN apt-get update
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install ldap-utils libpam-ldapd debconf-utils

@@ -20,3 +20,7 @@ Dockerized Home Server
  * Mysql server
  * PHPMyAdmin
  * Owncloud
+ * OpenLDAP
+ * PHPLdapAdmin
+ * Versatile shell server with LDAP
+ * AFPd with LDAP

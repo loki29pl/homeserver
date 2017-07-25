@@ -110,14 +110,26 @@ services:
     build: ./shell
     container_name: "shell"
     ports:
-      - "2222:22"
+      - "2222:2222"
     networks:
       srvbr:
         ipv4_address: 10.121.0.19
     volumes:
       - ./shell/home:/home
+      - ./shell/ssh:/etc/ssh
     depends_on:
       - ldap-template
+    
+  afp:
+    build: "./afp"
+    container_name: "afp"
+    ports:
+      - 5480:548
+    volumes:
+      - ./afp/afp.conf:/usr/local/etc/afp.conf
+    networks:
+      srvbr:
+        ipv4_address: 10.121.0.20
 
 networks:
   srvbr:
