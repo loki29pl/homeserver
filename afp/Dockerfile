@@ -3,6 +3,9 @@ FROM "local/ldap-template"
 ENV DBUS_SYSTEM_BUS_ADDRESS tcp:host=10.121.0.10,bind=*,port=34350,family=ipv4
 ENV DBUS_SESSION_BUS_ADDRESS tcp:host=10.121.0.10,bind=*,port=34350,family=ipv4
 
+# Wokraround for: Updates for this repository will not be applied.
+RUN rm -Rf /var/lib/apt/
+
 RUN apt-get update
 
 RUN apt-get install -y \
