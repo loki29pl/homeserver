@@ -142,7 +142,7 @@ services:
       - ldap-template
 
   graphical:
-    build: .
+    build: "./graphical"
     container_name: graphical
     ports:
       - 3389:3389
