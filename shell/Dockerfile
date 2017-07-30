@@ -8,11 +8,11 @@ EXPOSE 22
 
 RUN apt-get install -y \
     vim \
-    bind9utils \
     traceroute \
     mtr \
     nmap \
     wget \
-    curl
+    curl \
+    dnsutils
 
 CMD nslcd; /usr/sbin/sshd -D

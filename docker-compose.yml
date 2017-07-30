@@ -125,7 +125,6 @@ services:
         ipv4_address: 10.121.0.19
     volumes:
       - ./shell/home:/home
-        #      - ./shell/ssh:/etc/ssh
     depends_on:
       - ldap-template
     
@@ -139,6 +138,19 @@ services:
     networks:
       srvbr:
         ipv4_address: 10.121.0.20
+    depends_on:
+      - ldap-template
+
+  graphical:
+    build: .
+    container_name: graphical
+    ports:
+      - 3389:3389
+    privileged: true
+    volumes:
+      - ./shell/home:/home
+    devices:
+      - "/dev/sr0:/dev/sr0"
     depends_on:
       - ldap-template
 
