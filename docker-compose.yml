@@ -153,6 +153,9 @@ services:
       - "/dev/sr0:/dev/sr0"
     depends_on:
       - ldap-template
+    networks:
+      srvbr:
+        ipv4_address: 10.121.0.21
 
 networks:
   srvbr:
