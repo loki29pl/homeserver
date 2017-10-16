@@ -98,6 +98,7 @@ services:
   
   phpldapadmin:
     image: osixia/phpldapadmin:0.7.0
+    container_name: "phpldapadmin"
     environment:
       PHPLDAPADMIN_LDAP_HOSTS: '10.121.0.16'
     ports:
@@ -151,6 +152,9 @@ services:
       - ./shell/home:/home
     devices:
       - "/dev/sr0:/dev/sr0"
+      - "/dev/cdrom:/dev/cdrom"
+      - "/dev/dvd:/dev/dvd"
+      - "/dev/sg0:/dev/sg0"
     depends_on:
       - ldap-template
     networks:
