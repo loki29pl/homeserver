@@ -161,6 +161,13 @@ services:
       srvbr:
         ipv4_address: 10.121.0.21
 
+  dhcpd:
+    image: "networkboot/dhcpd"
+    container_name: "dhcpd"
+    network_mode: "host"
+    volumes:
+    - "./dhcpd:/data"
+
 networks:
   srvbr:
     driver: bridge
