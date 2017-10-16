@@ -161,7 +161,7 @@ services:
     image: thomass/no-ip-ddns
     container_name: noip
     volumes:
-      - ./noip/noip2.conf:/config/noip2.conf
+      - ./noip:/config
 
 networks:
   srvbr:
