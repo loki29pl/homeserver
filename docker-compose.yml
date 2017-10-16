@@ -157,6 +157,12 @@ services:
       srvbr:
         ipv4_address: 10.121.0.21
 
+  noip:
+    image: thomass/no-ip-ddns
+    container_name: noip
+    volumes:
+      - ./noip/noip2.conf:/config/noip2.conf
+
 networks:
   srvbr:
     driver: bridge
