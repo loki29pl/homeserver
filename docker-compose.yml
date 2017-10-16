@@ -168,6 +168,12 @@ services:
     volumes:
     - "./dhcpd:/data"
 
+  noip:
+    image: thomass/no-ip-ddns
+    container_name: noip
+    volumes:
+      - ./noip:/config
+
 networks:
   srvbr:
     driver: bridge
